@@ -6,7 +6,7 @@ let https = require('https');
 //let fs = require('fs');
 const net = require('net');
 var PORT = 9000
-var HOST = '18.132.243.238'
+var HOST = 'localhost'
 var TIMEOUT = 1000
 
 //let MAX_LOG_FILE_SIZE = 500 * 1024 * 1024;
