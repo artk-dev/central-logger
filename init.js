@@ -14,7 +14,7 @@ var TIMEOUT = 1000
 setInterval(function() {
 	let res = process.memoryUsage();
 	console.log("mem usage " + res.heapUsed + ", external " + res.external);
-}, 1500);
+}, 15000);
 
 let _filter;
 

@@ -8,6 +8,7 @@ Type=simple
 User=testuser
 ExecStart=/usr/bin/node /home/testuser/My_work/audiocc/server_app.js
 Restart=on-failure
+RestartSec = 2
 
 [Install]
 WantedBy=multi-user.target

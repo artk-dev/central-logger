@@ -1,5 +1,6 @@
 const net = require('net')
 const fs  = require('fs');
+var LOG_FILE_DIR = '/home/testuser/My_work/audiocc/'
 
 var server = net.createServer();
 
@@ -32,7 +33,7 @@ function logWrite(txt, prog_name) {
 
     function doWrite() {
         logWriting = true;
-        fs.open('./' + prog_name + "_logs.log", 'a', function(err, fd) {
+        fs.open(LOG_FILE_DIR + prog_name + "_logs.log", 'a', function(err, fd) {
             fs.fstat(fd, function(err, stats) {
                 if(err) {
                     fs.close(fd, function(err) {
