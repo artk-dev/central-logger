@@ -6,7 +6,7 @@ After=network.target
 [Service]
 Type=simple
 User=testuser
-ExecStart=/usr/bin/node /home/My_work/audiocc/server_app.js
+ExecStart=/usr/bin/node /home/testuser/My_work/audiocc/server_app.js
 Restart=on-failure
 
 [Install]
