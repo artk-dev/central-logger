@@ -1,6 +1,6 @@
 const net = require('net')
 const fs  = require('fs');
-var LOG_FILE_DIR = '/home/testuser/My_work/audiocc/'
+var LOG_FILE_DIR = './'
 
 var server = net.createServer();
 
@@ -23,17 +23,27 @@ server.on("connection", (socket) => {
     })
 })
 
+
+
 let logWriteTxt = ''
 let logWriting = false;
 let MAX_LOG_FILE_SIZE = 500 * 1024 * 1024;
 
+// logWrite('a', 'file1'); logWrite('b', 'file2');
+var promise2 = logWrite('b', 'file2');
+var promise1 = logWrite('a', 'file1');
+
+Promise.all([promise1, promise2])
+  .then(results => console.log(results));
+
 function logWrite(txt, prog_name) {
     let now = new Date();
     logWriteTxt += now.toString() + '\t' + txt;
+    let buf_fn = Buffer.from(prog_name)
 
     function doWrite() {
         logWriting = true;
-        fs.open(LOG_FILE_DIR + prog_name + "_logs.log", 'a', function(err, fd) {
+        fs.open(LOG_FILE_DIR + buf_fn.toString('utf-8') + "_logs.log", 'a', function(err, fd) {
             fs.fstat(fd, function(err, stats) {
                 if(err) {
                     fs.close(fd, function(err) {
@@ -42,7 +52,8 @@ function logWrite(txt, prog_name) {
                     return;
                 }
 
-                let buf = new Buffer(logWriteTxt);
+                let buf = Buffer.from(logWriteTxt)
+                //let buf = new Buffer(logWriteTxt);
                 logWriteTxt = '';
 
                 if(stats.size + buf.length > MAX_LOG_FILE_SIZE) {
