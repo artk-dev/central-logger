@@ -1,6 +1,6 @@
 audiocc_init = require('./init.js');
 
-audiocc_init.init('test3');
+audiocc_init.init('test');
 
 var play = function play(){
     console.log("hello");

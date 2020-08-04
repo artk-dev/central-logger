@@ -1,10 +1,12 @@
 const net = require('net')
 const fs  = require('fs');
+
+var PORT = 9000
 var LOG_FILE_DIR = './'
 
 var server = net.createServer();
 
-server.listen(9000, () => {
+server.listen(PORT, () => {
     console.log('Listening on port 9000 for logs')
 });
 
@@ -30,11 +32,6 @@ let logWriting = false;
 let MAX_LOG_FILE_SIZE = 500 * 1024 * 1024;
 
 // logWrite('a', 'file1'); logWrite('b', 'file2');
-var promise2 = logWrite('b', 'file2');
-var promise1 = logWrite('a', 'file1');
-
-Promise.all([promise1, promise2])
-  .then(results => console.log(results));
 
 function logWrite(txt, prog_name) {
     let now = new Date();

@@ -6,7 +6,7 @@ let https = require('https');
 //let fs = require('fs');
 const net = require('net');
 var PORT = 9000
-var HOST = '18.132.243.238'
+var HOST = 'localhost' //replace with IP of server
 var TIMEOUT = 1000
 
 //let MAX_LOG_FILE_SIZE = 500 * 1024 * 1024;
@@ -23,65 +23,6 @@ exports.filterLogs=function(filter){
 }
 
 exports.init = (prog_name) => {
-	// let logWriting = false;
-	// let hadUncaught	= false;
-	// let logWriteTxt = '';
-/*
-	// To find errors which go through uncaughtException
-	let oldHTTPRequest = http.request;
-	http.request = (a, b, c) => {
-		let d = oldHTTPRequest(a, b, c);
-		d.on('error', (e) => {
-			console.log('http error', e, a);
-		});
-		return d;
-	};
-	let oldHTTPSRequest = https.request;
-	https.request = (a, b, c) => {
-		let d = oldHTTPSRequest(a, b, c);
-		d.on('error', (e) => {
-			console.log('https error', e, a);
-		});
-		return d;
-	};
-*/
-	// function logWrite(txt) {
-	// 	let now = new Date();
-	// 	logWriteTxt += now.toString() + '\t' + txt;
-
-	// 	function doWrite() {
-	// 		logWriting = true;
-	// 		fs.open('./' + prog_name + '.log', 'a', function(err, fd) {
-	// 			fs.fstat(fd, function(err, stats) {
-	// 				if(err) {
-	// 					fs.close(fd, function(err) {
-	// 						logWriting = false;
-	// 					});
-	// 					return;
-	// 				}
-
-	// 				let buf = new Buffer(logWriteTxt);
-	// 				logWriteTxt = '';
-
-	// 				if(stats.size + buf.length > MAX_LOG_FILE_SIZE) {
-	// 					fs.close(fd, function(err) {
-	// 						logWriting = false;
-	// 					});
-	// 				} else {
-	// 					fs.write(fd, buf, 0, buf.length, null, function(err, written, buffer) {
-	// 						fs.close(fd, function(err) {
-	// 							logWriting = false;
-	// 							if(logWriteTxt != '')
-	// 								doWrite();
-	// 						});
-	// 					});
-	// 				}
-	// 			});
-	// 		});
-	// 	}
-	// 	if(!logWriting)
-	// 		doWrite();
-	// }
 
 	function exitSave() {
 		process.exit(0);
@@ -89,7 +30,6 @@ exports.init = (prog_name) => {
 
 	// redirect stdout and stderr to log file by overriding
 	// the write function of the underlying stream
-	// this override is on a global level
 	process.stdout.write = ((write) => {
 	    return (string, encoding, fd) => {
 			if (!_filter||_filter(string)){
