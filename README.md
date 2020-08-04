@@ -1,7 +1,6 @@
 SIMPLE CENTRAL LOGGING SYSTEM
 
-![Image]
-(./display_image)
+![](display_image)
 
 server_app.js allows you to log output from all of your servers to a single central server.
 
