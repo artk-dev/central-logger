@@ -1,5 +1,8 @@
 SIMPLE CENTRAL LOGGING SYSTEM
 
+![Image]
+(./display_image)
+
 server_app.js allows you to log output from all of your servers to a single central server.
 
 To install server_app.js on your central server using systemd run:
